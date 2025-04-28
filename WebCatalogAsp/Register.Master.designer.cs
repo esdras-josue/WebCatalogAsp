@@ -11,7 +11,7 @@ namespace WebCatalogAsp
 {
 
 
-    public partial class Site
+    public partial class Register
     {
 
         /// <summary>
@@ -31,24 +31,6 @@ namespace WebCatalogAsp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// SearchTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
-
-        /// <summary>
-        /// SearchButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchButton;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

@@ -7,14 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace WebCatalogAsp
 {
-    public partial class Site : System.Web.UI.MasterPage
+    public partial class Articles : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void SearchButton_Click(object sender, EventArgs e)
         {
 
         }

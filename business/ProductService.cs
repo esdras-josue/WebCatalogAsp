@@ -35,7 +35,7 @@ namespace business
             try
             {
                 data.SetQuery
-                    ("SELECT A.Id,A.Codigo,A.Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Item, A.Precio " +
+                    ("SELECT A.Id,A.Codigo,A.Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Item, A.ImagenUrl,A.Precio " +
                     "From ARTICULOS A, Marcas M, CATEGORIAS C " +
                     "WHERE M.Id = A.IdMarca and C.Id = A.IdCategoria;"
                     );
@@ -52,7 +52,7 @@ namespace business
                     prod.Brand.Description = data.Reader["Marca"].ToString();
                     prod.CategoryDescription = new Category();
                     prod.CategoryDescription.Description = data.Reader["Item"].ToString();
-                    //prod.ImageUrl = data.Reader["ImageUrl"].ToString();
+                    prod.ImageUrl = data.Reader["ImagenUrl"].ToString();
                     prod.Price = (decimal)data.Reader["Precio"];
 
                     product.Add(prod);
@@ -71,5 +71,35 @@ namespace business
             }
 
         }
+
+        public void AddArticles(Product article)
+        {
+            DataAcces data = new DataAcces();
+            try
+            {
+                data.SetQuery("INSERT INTO ARTICULOS (Codigo,Nombre ,Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)" +
+                    "VALUES(" + "@Codigo,@Nombre,@Descripcion,@IdMarca,@idCategoria, @UrlImagen, @Precio)");
+                data.AddParameter("@Codigo",article.Code);
+                data.AddParameter("@Nombre", article.Name);
+                data.AddParameter("@Descripcion", article.Description);
+                data.AddParameter("@IdMarca", article.Brand.Id);
+                data.AddParameter("@IdCategoria", article.CategoryDescription.Id);
+                data.AddParameter("@ImagenUrl",article.ImageUrl);
+                data.AddParameter("@Precio", article.Price);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { data.CloseConnection(); } 
+
+        }
+        // metodo para agregar articulos
+        // metodo para para modificar articulo
+        // metodo para elimianar  articulo
+        // metodo para eliminacion logica
+        // metodo para filtrar articulos
     }
 }

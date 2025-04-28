@@ -39,6 +39,7 @@ namespace business
                     "From ARTICULOS A, Marcas M, CATEGORIAS C " +
                     "WHERE M.Id = A.IdMarca and C.Id = A.IdCategoria;"
                     );
+
                 data.ExecuteReader();
 
                 while (data.Reader.Read())
@@ -96,7 +97,7 @@ namespace business
             finally { data.CloseConnection(); } 
 
         }
-        // metodo para agregar articulos
+        
         // metodo para para modificar articulo
         // metodo para elimianar  articulo
         // metodo para eliminacion logica

@@ -15,20 +15,29 @@ namespace WebCatalogAsp
         {
             // cargar la lista de productos
             ProductService products = new ProductService();
-            dgvProducts.DataSource = products.GetProducts(); // origen de datos
+            Session.Add("ProductsList", products.GetProducts());
+            dgvProducts.DataSource = Session["ProductsList"]; // origen de datos
             dgvProducts.DataBind(); // renderiza los productos en la grilla
 
         }
 
-        protected void dgvProducts_SelectedIndexChanged(object sender, GridViewSelectEventArgs e)
+        protected void dgvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var id = dgvProducts.SelectedValue.ToString();
+            var id = dgvProducts.SelectedDataKey.Value.ToString();
             Response.Redirect("ProductForm.aspx?id=" + id);
         }
 
         protected void dgvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
+        }
+
+        protected void filter_TextChanged(object sender, EventArgs e)
+        {
+            List<Product> productList = (List<Product>)Session["ProductsList"];
+            List<Product> filterList = productList.FindAll(x=>x.Name.ToUpper().Contains(filter.Text.ToUpper()));
+            dgvProducts.DataSource= filterList;
+            dgvProducts.DataBind(); 
         }
 
         /*

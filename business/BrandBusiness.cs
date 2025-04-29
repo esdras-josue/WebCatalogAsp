@@ -9,7 +9,7 @@ namespace business
 {
     public class BrandBusiness
     {
-        public List<Brand> Brands()
+        public List<Brand> BrandsList()
         {
             List<Brand> brandsList = new List<Brand>();
             DataAcces dataAcces = new DataAcces();
@@ -22,8 +22,8 @@ namespace business
                 while(dataAcces.Reader.Read())
                 {
                     Brand brand = new Brand();
-                    brand.Id = (int)dataAcces.Reader["id"];
-                    brand.Description = (string)dataAcces.Reader["description"];
+                    brand.Id = (int)dataAcces.Reader["Id"];
+                    brand.Description = (string)dataAcces.Reader["Descripcion"];
                     brandsList.Add(brand);
                 }
 

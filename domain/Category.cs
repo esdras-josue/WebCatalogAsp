@@ -8,8 +8,8 @@ namespace domain
 {
     public class Category
     {
-        public int Id;
-        public string Description;
+        public int Id { get; set; }
+        public string Description { get; set; }
         public override string ToString()
         {
             return Description;

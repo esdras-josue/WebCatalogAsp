@@ -9,7 +9,7 @@ namespace business
 {
     public class CategoryBusiness
     {
-        public List<Category> categories()
+        public List<Category> CategoriesList()
         {
             DataAcces dataAcces = new DataAcces();
             List<Category> categoriesList = new List<Category>();

@@ -11,13 +11,19 @@ namespace WebCatalogAsp
 {
     public partial class Products : System.Web.UI.Page
     {
+        public bool getFilteredProduct {  get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            // cargar la lista de productos
-            ProductService products = new ProductService();
-            Session.Add("ProductsList", products.GetProducts());
-            dgvProducts.DataSource = Session["ProductsList"]; // origen de datos
-            dgvProducts.DataBind(); // renderiza los productos en la grilla
+              getFilteredProduct = chkFilteredProduct.Checked;
+            if (!IsPostBack)
+            {
+                // cargar la lista de productos
+                ProductService products = new ProductService();
+                Session.Add("ProductsList", products.GetProducts());
+                dgvProducts.DataSource = Session["ProductsList"]; // origen de datos
+                dgvProducts.DataBind(); // renderiza los productos en la grilla
+            }
+
 
         }
 
@@ -40,6 +46,47 @@ namespace WebCatalogAsp
             dgvProducts.DataBind(); 
         }
 
+        protected void chkFilteredProduct_CheckedChanged(object sender, EventArgs e)
+        {
+            getFilteredProduct = chkFilteredProduct.Checked;
+            filter.Enabled = !chkFilteredProduct.Checked;
+        }
+
+        protected void ddlField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlSearchBy.Items.Clear();
+            if(ddlField.SelectedItem.ToString() == "Precio")
+            {
+                ddlSearchBy.Items.Add("Greater than");
+                ddlSearchBy.Items.Add("Less than");
+                ddlSearchBy.Items.Add("Equal than");
+            }
+            else
+            {
+                ddlSearchBy.Items.Add("Starts With");
+                ddlSearchBy.Items.Add("Ends With");
+                ddlSearchBy.Items.Add("Constains With");
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductService service = new ProductService();
+                dgvProducts.DataSource = service.GetFilteredProduct(ddlField.SelectedItem.ToString(),
+                    ddlSearchBy.SelectedItem.ToString(),
+                    txtGetFilteredProduct.Text);
+                dgvProducts.DataBind();
+                
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error",ex);
+            }
+        }
+        // CONTRUIR UN METODO PARA LIMPIAR EL FILTRO DESPUES HACER UNA BUSQUEDA Y LA GRILLA MUESTRE TODOS LOS PRODUCTOS DE NUEVO
         /*
         protected void dgvProducts_SelectedIndexChanged1(object sender, EventArgs e)
         {

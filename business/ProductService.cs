@@ -151,10 +151,10 @@ namespace business
                 data.SetQuery("UPDATE ARTICULOS SET Codigo= @codigo,Nombre= @nombre, Descripcion=@descripcion,IdMarca=@idMarca,Idcategoria=@idCategoria,ImagenUrl=@imagenUrl, Precio=@precio WHERE ID = @id");
                 data.AddParameter("@codigo", article.Code);
                 data.AddParameter("@nombre", article.Name);
-                data.AddParameter("@descripcion",article.Description);
-                data.AddParameter("@idMarca",article.Brand.Id);
+                data.AddParameter("@descripcion", article.Description);
+                data.AddParameter("@idMarca", article.Brand.Id);
                 data.AddParameter("@idCategoria", article.Category.Id);
-                data.AddParameter("@imagenUrl",article.ImageUrl);
+                data.AddParameter("@imagenUrl", article.ImageUrl);
                 data.AddParameter("@precio", article.Price);
                 data.AddParameter("@id", article.Id);
                 data.ExecuteNonQuery();
@@ -182,9 +182,86 @@ namespace business
             data.AddParameter("@id", id);
             data.ExecuteNonQuery();
         }
-        // metodo para para modificar articulo
-        // metodo para elimianar  articulo
-        // metodo para eliminacion logica
-        // metodo para filtrar articulos
+
+        public List<Product> GetFilteredProduct(string field, string searchBy, string search)
+        {
+            List<Product> products = new List<Product>();
+
+            try
+            {
+                string query = "SELECT A.Id,A.Codigo,A.Nombre, A.Descripcion, M.Descripcion as Marca, C.Descripcion as Item, A.ImagenUrl,A.Precio " +
+                               "FROM ARTICULOS A " +
+                               "INNER JOIN Marcas M ON M.Id = A.IdMarca " +
+                               "INNER JOIN CATEGORIAS C ON C.Id = A.IdCategoria WHERE ";
+
+                if (field == "Precio")
+                {
+                    switch (searchBy)
+                    {
+                        case "Greater than":
+                            query += "A.Precio > " + search;
+                            break;
+                        case "Less than":
+                            query += "A.Precio < " + search;
+                            break;
+                        default:
+                            query += "A.Precio = " + search;
+                            break;
+                    }
+                }
+                else if (field == "Nombre")
+                {
+                    switch (searchBy)
+                    {
+                        case "Starts With":
+                            query += "A.Nombre LIKE @search";
+                            search += "%";
+                            break;
+                        case "Ends with":
+                            query += "A.Nombre LIKE @search";
+                            search = "%" + search;
+                            break;
+                        default:
+                            query += "A.Nombre LIKE @search";
+                            search = "%" + search + "%";
+                            break;
+                    }
+                    data.AddParameter("@search", search);
+                }
+                else
+                {
+                    query += "A.Descripcion LIKE @search";
+                    search = "%" + search + "%";
+                    data.AddParameter("@search", search);
+                }
+
+                data.SetQuery(query);
+                data.ExecuteReader();
+
+                while (data.Reader.Read())
+                {
+                    Product prod = new Product();
+                    prod.Id = (int)data.Reader["Id"];
+                    prod.Code = data.Reader["Codigo"].ToString();
+                    prod.Name = data.Reader["Nombre"].ToString();
+                    prod.Description = data.Reader["Descripcion"].ToString();
+                    prod.Brand = new Brand { Description = data.Reader["Marca"].ToString() };
+                    prod.Category = new Category { Description = data.Reader["Item"].ToString() };
+                    prod.ImageUrl = data.Reader["ImagenUrl"].ToString();
+                    prod.Price = (decimal)data.Reader["Precio"];
+                    products.Add(prod);
+                }
+
+                return products;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
     }
 }

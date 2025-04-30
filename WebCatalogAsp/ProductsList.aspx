@@ -12,6 +12,52 @@
         </div>
     </div>
 
+    <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
+        <div class="mb-3">
+            <asp:CheckBox Text="Get Filtered Product"
+                CssClass="" ID="chkFilteredProduct" runat="server"
+                AutoPostBack="true"
+                OnCheckedChanged="chkFilteredProduct_CheckedChanged" />
+        </div>
+    </div>
+
+    <%if (chkFilteredProduct.Checked)
+        { %>
+    <div class="row">
+        <div class="col-3">
+            <div class="mb-3">
+                <asp:Label Text="Field" ID="lblField" runat="server" />
+                <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlField" CssClass="form-control" OnSelectedIndexChanged="ddlField_SelectedIndexChanged">
+                    <asp:ListItem Text="Precio" />
+                    <asp:ListItem Text="Nombre" />
+                    <asp:ListItem Text="Descripcion" />
+                </asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="mb-3">
+                <asp:Label Text="SearchBy" runat="server" />
+                <asp:DropDownList runat="server" ID="ddlSearchBy" CssClass="form-control"></asp:DropDownList>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="mb-3">
+                <asp:Label Text="Filtro" runat="server" />
+                <asp:TextBox runat="server" ID="txtGetFilteredProduct" CssClass="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="mb-3">
+                    <asp:Button Text="Search" runat="server" CssClass="btn btn-primary" ID="btnSearch" OnClick="btnSearch_Click" />
+                </div>
+            </div>
+        </div>
+        <%} %>
+    </div>
+
     <asp:GridView runat="server" ID="dgvProducts" CssClass="table table-striped table-bordered table-dark table-hover"
         AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
         <Columns>

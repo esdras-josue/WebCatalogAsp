@@ -23,7 +23,7 @@
                 <asp:TextBox runat="server" ID="txtPassword" CssClass="form-control form-control-sm" TextMode="Password" placeholder="Enter password" />
             </div>
 
-            <asp:Button runat="server" ID="btnSignIn" Text="Sign In" CssClass="btn btn-primary w-100 btn-sm" />
+            <asp:Button runat="server" ID="btnSignIn" Text="Sign In" CssClass="btn btn-primary w-100 btn-sm" OnClick="btnSignIn_Click"/>
             <p>Already have an account?</p><a href="Login.aspx" class="btn btn-outline-primary"> Login here</a>
             <a href="Home.aspx" class="btn btn-outline-primary"> Cancel</a>
         </div>

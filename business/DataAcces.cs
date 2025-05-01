@@ -108,6 +108,27 @@ namespace business
         /// <summary>
         /// Closes the open reader and database connection.
         /// </summary> 
+        /// 
+
+        public int ExecuteScalar()
+        {
+            command.Connection = connection;
+            try
+            {
+                connection.Open();
+                return int.Parse(command.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                command.Parameters.Clear();
+            }
+
+        }
         public void CloseConnection()
         {
             if (reader != null)

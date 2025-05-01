@@ -1,9 +1,11 @@
-﻿using System;
+﻿using domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using business;
 
 namespace WebCatalogAsp
 {
@@ -16,7 +18,11 @@ namespace WebCatalogAsp
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
-
+            ProductService service = new ProductService();
+            List<Product> productList = (List<Product>)Session["ProductsList"];
+            List<Product> filterList = productList.FindAll(x => x.Name.ToUpper().Contains(SearchTextBox.Text.ToUpper()));
+            // mostrar el resultado de la busqueda
+            // <asp:Label ID="lblResultado" runat="server" CssClass="mt-2 d-block"></asp:Label> crear una lable para mostrar el resultado
         }
     }
 }

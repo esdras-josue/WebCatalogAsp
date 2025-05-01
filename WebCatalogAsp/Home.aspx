@@ -69,11 +69,12 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Name")%></h5>
                                 <p class="card-text"><%#Eval("Description")%></p>
+                                <p class="card-text"><%#Eval("Price")%></p>
                                 <a href="ProductsList.aspx?id=<%#Eval("Id")%>">ver detalles</a>
                                 <asp:Button Text="See Product" runat="server" CssClass="btn btn-primary" ID="btnProduct" CommandArgument='<%#Eval("Id") %>' CommandName="ProductId" OnClick="btnProduct_Click" />
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </ItemTemplate>
             </asp:Repeater>
         </div>

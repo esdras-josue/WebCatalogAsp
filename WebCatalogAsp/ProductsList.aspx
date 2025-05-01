@@ -4,10 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <div class="col-6">
-            <div class="mb-3">
+        <div class="d-flex align-items-end gap-2 col-6">
+            <div class="flex-grow-1 mb-3">
                 <asp:Label Text="Search" runat="server" />
-                <asp:TextBox runat="server" ID="filter" CssClass="form-control" AutoPostBack="true" OnTextChanged="filter_TextChanged" />
+                <asp:TextBox runat="server" ID="filter" CssClass="form-control" AutoPostBack="true" OnTextChanged="filter_TextChanged" /> 
+            </div>
+            <div class="mb-3">
+                <asp:Button Text="Clean" runat="server" cssClass="btn btn-outline-primary" ID="btnCleanSearch" OnClick="btnCleanSearch_Click"/> 
             </div>
         </div>
     </div>
@@ -28,9 +31,10 @@
             <div class="mb-3">
                 <asp:Label Text="Field" ID="lblField" runat="server" />
                 <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlField" CssClass="form-control" OnSelectedIndexChanged="ddlField_SelectedIndexChanged">
-                    <asp:ListItem Text="Precio" />
-                    <asp:ListItem Text="Nombre" />
-                    <asp:ListItem Text="Descripcion" />
+                    <asp:ListItem Text ="Select an Item" Value="" Selected="True"/>
+                    <asp:ListItem Text="Price"/>
+                    <asp:ListItem Text="Name" />
+                    <asp:ListItem Text="Description" />
                 </asp:DropDownList>
             </div>
         </div>
@@ -52,6 +56,7 @@
             <div class="col-3">
                 <div class="mb-3">
                     <asp:Button Text="Search" runat="server" CssClass="btn btn-primary" ID="btnSearch" OnClick="btnSearch_Click" />
+                    <asp:Button Text="Clean" runat="server" cssClass="btn btn-outline-primary" ID="btnClean" OnClick="btnClean_Click"/>
                 </div>
             </div>
         </div>

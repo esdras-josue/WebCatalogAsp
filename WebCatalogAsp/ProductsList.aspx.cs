@@ -14,7 +14,7 @@ namespace WebCatalogAsp
         public bool getFilteredProduct {  get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-              getFilteredProduct = chkFilteredProduct.Checked;
+            getFilteredProduct = chkFilteredProduct.Checked;
             if (!IsPostBack)
             {
                 // cargar la lista de productos
@@ -42,7 +42,7 @@ namespace WebCatalogAsp
         {
             List<Product> productList = (List<Product>)Session["ProductsList"];
             List<Product> filterList = productList.FindAll(x=>x.Name.ToUpper().Contains(filter.Text.ToUpper()));
-            dgvProducts.DataSource= filterList;
+            dgvProducts.DataSource = filterList;
             dgvProducts.DataBind(); 
         }
 
@@ -54,19 +54,21 @@ namespace WebCatalogAsp
 
         protected void ddlField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlSearchBy.Items.Clear();
-            if(ddlField.SelectedItem.ToString() == "Precio")
-            {
+             ddlSearchBy.Items.Clear();
+             if (ddlField.SelectedItem.ToString() == "Price")
+             {
                 ddlSearchBy.Items.Add("Greater than");
                 ddlSearchBy.Items.Add("Less than");
                 ddlSearchBy.Items.Add("Equal than");
-            }
+             }
+
             else
             {
                 ddlSearchBy.Items.Add("Starts With");
                 ddlSearchBy.Items.Add("Ends With");
                 ddlSearchBy.Items.Add("Constains With");
-            }
+            } 
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -75,8 +77,8 @@ namespace WebCatalogAsp
             {
                 ProductService service = new ProductService();
                 dgvProducts.DataSource = service.GetFilteredProduct(ddlField.SelectedItem.ToString(),
-                    ddlSearchBy.SelectedItem.ToString(),
-                    txtGetFilteredProduct.Text);
+                ddlSearchBy.SelectedItem.ToString(),
+                txtGetFilteredProduct.Text);
                 dgvProducts.DataBind();
                 
             }
@@ -86,7 +88,28 @@ namespace WebCatalogAsp
                 Session.Add("error",ex);
             }
         }
-        // CONTRUIR UN METODO PARA LIMPIAR EL FILTRO DESPUES HACER UNA BUSQUEDA Y LA GRILLA MUESTRE TODOS LOS PRODUCTOS DE NUEVO
+
+        protected void btnClean_Click(object sender, EventArgs e)
+        {
+            ProductService products = new ProductService();
+            Session.Add("ProductsList", products.GetProducts());
+            dgvProducts.DataSource = Session["ProductsList"]; // origen de datos
+            dgvProducts.DataBind(); // renderiza los productos en la grilla
+            ddlSearchBy.Items.Clear();
+            txtGetFilteredProduct.Text = string.Empty;
+
+        }
+
+        protected void btnCleanSearch_Click(object sender, EventArgs e)
+        {
+            ProductService products = new ProductService();
+            Session.Add("ProductsList", products.GetProducts());
+            dgvProducts.DataSource = Session["ProductsList"]; // origen de datos
+            dgvProducts.DataBind(); // renderiza los productos en la grilla
+            ddlSearchBy.Items.Clear();
+            filter.Text = string.Empty;
+        }
+        
         /*
         protected void dgvProducts_SelectedIndexChanged1(object sender, EventArgs e)
         {

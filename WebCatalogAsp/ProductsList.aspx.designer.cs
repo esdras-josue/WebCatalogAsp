@@ -24,6 +24,15 @@ namespace WebCatalogAsp
         protected global::System.Web.UI.WebControls.TextBox filter;
 
         /// <summary>
+        /// btnCleanSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCleanSearch;
+
+        /// <summary>
         /// chkFilteredProduct control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace WebCatalogAsp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
+        /// btnClean control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClean;
 
         /// <summary>
         /// dgvProducts control.

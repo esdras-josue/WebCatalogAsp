@@ -37,13 +37,16 @@ namespace WebCatalogAsp
                 }
                 else
                 {
-                    Session["Error"] = "Invalid email or password.";
+                    Session.Add("error", "email or pass incorrect");
+                    Response.Redirect("Error.aspx");
                 }
             }
             catch (Exception ex)
             {
 
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");
+
             }
         }
     }

@@ -28,7 +28,7 @@
                         <a class="nav-link" href="ProductForm.aspx">Products Form</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="MyProfile.aspx">My Profile</a>
                     </li>
                 </ul>
                 <!-- Buscador centrado -->

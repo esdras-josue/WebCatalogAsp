@@ -23,23 +23,27 @@ namespace WebCatalogAsp
 
             try
             {
-                if(string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassord.Text)){
+                if(string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPassword.Text)){
                     Session.Add("Error","email or password incorrect");
                 }
 
                 user.Email = txtEmail.Text;
-                user.Password = txtPassord.Text;
+                user.Password = txtPassword.Text;
 
                 if (userBusiness.Login(user))
                 {
                     Session.Add("user",user);
-                    Response.Redirect("Homes.aspx", false); // hacer rediriccion a mi perfil por ahora a home;
+                    Response.Redirect("MyProfile.aspx", false); // hacer rediriccion a mi perfil por ahora a home;
+                }
+                else
+                {
+                    Session["Error"] = "Invalid email or password.";
                 }
             }
             catch (Exception ex)
             {
 
-                Session.Add("Error",ex.ToString());
+                throw ex;
             }
         }
     }

@@ -41,15 +41,16 @@ namespace business
 
             try
             {
-                data.SetQuery("SELECT Id, TypeUser WHERE email = @email AND pass = @password");
+                data.SetQuery("SELECT Id, email,pass,admin FROM USERS WHERE email = @email AND pass = @password");
                 data.AddParameter("@email", user.Email);
-                data.AddParameter("@pass",user.Password);
-                data.ExecuteNonQuery();
+                data.AddParameter("@password", user.Password);
+                data.ExecuteReader();
 
                 while(data.Reader.Read())
                 {
-                    user.Id = (int)data.Reader["Id"];
-                    user.TypeUser = (int)(data.Reader["TypeUser"]) == 2 ? TypeUser.administrator : TypeUser.user;
+                    user.Id = data.Reader["Id"].ToString();
+                    user.IsAdmin = (bool)data.Reader["admin"];
+                    //user.TypeUser = ((int)data.Reader["TypeUser"]) == 2 ? TypeUser.administrator : TypeUser.user;
                     return true;
                 }
 

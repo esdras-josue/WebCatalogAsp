@@ -12,7 +12,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <asp:TextBox runat="server" CssClass="form-control" Type="password" ID="txtPassord" />
+                <asp:TextBox runat="server" CssClass="form-control" Type="password" ID="txtPassword" />
             </div>
             <div class="mb-3 text-center">
                 <asp:Button runat="server" Text="Login" CssClass="btn btn-primary me-2" ID="btnLogin" OnClick="btnLogin_Click" />

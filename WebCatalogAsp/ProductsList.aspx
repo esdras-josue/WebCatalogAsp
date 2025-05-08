@@ -63,7 +63,7 @@
         <%} %>
     </div>
 
-    <asp:GridView runat="server" ID="dgvProducts" CssClass="table table-striped table-bordered table-dark table-hover"
+    <asp:GridView runat="server" ID="dgvProducts" CssClass="table table-dark table-hover"
         AutoGenerateColumns="false" DataKeyNames="Id" OnSelectedIndexChanged="dgvProducts_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="Code" DataField="Code" />

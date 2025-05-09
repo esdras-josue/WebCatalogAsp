@@ -39,9 +39,20 @@
 
                 <!-- Botones u opciones adicionales a la derecha -->
                 <div class="d-flex">
-                     <a href="Login.aspx" class="btn btn-success me-2">Login</a>
-                     <a href="SignUp.aspx" class="btn btn-outline-primary m-auto">Sign up</a>
-                     <asp:Image ID="imgAvatar" CssClass="ms-3" style="height:40px; width:40px; border-radius:50%;" 
+                    <%
+                        if (!business.Security.ActiveSession((domain.User)Session["user"]))
+                        { %>
+                             <a href="Login.aspx" class="btn btn-success me-2">Login</a>
+                             <a href="SignUp.aspx" class="btn btn-outline-primary m-auto">Sign up</a>
+                    <%
+                        }
+                        else
+                        {
+                    %>
+                            <asp:Button runat="server" Text="Logout" ID="btnLogOut" CssClass="btn btn-outline-primary me-2" OnClick="btnLogOut_Click"/>
+                    <%} %>
+
+                    <asp:Image ID="imgAvatar" CssClass="ms-3" Style="height: 40px; width: 40px; border-radius: 50%;"
                         runat="server" />
                 </div>
             </div>

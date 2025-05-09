@@ -29,5 +29,11 @@ namespace WebCatalogAsp
             // mostrar el resultado de la busqueda
             // <asp:Label ID="lblResultado" runat="server" CssClass="mt-2 d-block"></asp:Label> crear una lable para mostrar el resultado
         }
+
+        protected void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx",false);
+        }
     }
 }

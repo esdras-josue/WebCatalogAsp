@@ -25,7 +25,9 @@ namespace WebCatalogAsp
                 user.Email = txtEmail.Text;
                 user.Name = txtName.Text;
                 user.Password = txtPassword.Text;
-                int userId = userBusiness.InsertNewUser(user);
+                user.Id = userBusiness.InsertNewUser(user).ToString();
+                Session.Add("user",user);
+
 
                 Response.Redirect("Home.aspx",false);
 

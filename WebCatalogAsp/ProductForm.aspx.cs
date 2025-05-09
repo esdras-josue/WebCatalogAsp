@@ -14,12 +14,13 @@ namespace WebCatalogAsp
         public bool ConfirmElimination { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+          
             if (!Security.isAdmin((User)Session["user"]))
             {
                 Session.Add("Error", "You need admin credentials to access this Windown");
                 Response.Redirect("Error.aspx");
             }
-
+           
             txtId.Enabled = false;
             ConfirmElimination = false;
             // Load DropDownList

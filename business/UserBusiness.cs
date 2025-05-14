@@ -41,7 +41,7 @@ namespace business
 
             try
             {
-                data.SetQuery("SELECT Id, email,pass,admin FROM USERS WHERE email = @email AND pass = @password");
+                data.SetQuery("SELECT Id, email,pass,admin,nombre,apellido,urlImagenPerfil FROM USERS WHERE email = @email AND pass = @password");
                 data.AddParameter("@email", user.Email);
                 data.AddParameter("@password", user.Password);
                 data.ExecuteReader();
@@ -50,7 +50,11 @@ namespace business
                 {
                     user.Id = data.Reader["Id"].ToString();
                     user.IsAdmin = (bool)data.Reader["admin"];
-                    //user.TypeUser = ((int)data.Reader["TypeUser"]) == 2 ? TypeUser.administrator : TypeUser.user;
+                    user.Name = data.Reader["nombre"].ToString();
+                    user.Lastname = data.Reader["apellido"].ToString();
+                    if (!(data.Reader["urlImagenPerfil"] is DBNull))
+                        user.ProfileImage = (string)data.Reader["urlImagenPerfil"];
+
                     return true;
                 }
 
@@ -67,6 +71,26 @@ namespace business
             }
 
         }
-        
+
+        public void Update(User user)
+        {
+            DataAcces data = new DataAcces();
+            try
+            {
+                data.SetQuery("Update USERS SET urlImagenPerfil = @imagen WHERE Id = @id");
+                data.AddParameter("@imagen", user.ProfileImage);
+                data.AddParameter("@id", user.Id);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
     }
 }

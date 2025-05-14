@@ -30,8 +30,6 @@ namespace WebCatalogAsp
 
 
                 Response.Redirect("Home.aspx",false);
-
-
             }
             catch (Exception ex)
             {

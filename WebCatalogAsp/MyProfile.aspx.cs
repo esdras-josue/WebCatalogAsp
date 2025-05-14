@@ -13,7 +13,55 @@ namespace WebCatalogAsp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (!IsPostBack)
+                {
+                    if (Security.ActiveSession((User)Session["user"]))
+                    {
+                        User user = (User)Session["user"];
+                        txtId.Text = user.Id;
+                        txtId.ReadOnly = true;
+                        txtEmail.Text = user.Email;
+                        txtEmail.ReadOnly = true;
+                        txtName.Text = user.Name;
+                        txtLastName.Text = user.Lastname;
+                        
+                        if (!string.IsNullOrEmpty(user.ProfileImage))
+                            imgUser.ImageUrl = "~/images/" + user.ProfileImage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UserBusiness userBusiness = new UserBusiness();
+                string path = Server.MapPath("./images/");
+                User user = (User)Session["user"];
+                string fileName = "perfil-" + user.Id + ".jpg";
+                txtImage.PostedFile.SaveAs(path + fileName);
+                user.ProfileImage = fileName;
+
+                userBusiness.Update(user);
+
+                Image img = (Image)Master.FindControl("imgAvatar");
+                img.ImageUrl = "~/images/" +  user.ProfileImage;
+                
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+            }
         }
     }
 }

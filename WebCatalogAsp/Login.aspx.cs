@@ -15,7 +15,6 @@ namespace WebCatalogAsp
         {
 
         }
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             User user = new User();

@@ -42,13 +42,13 @@ namespace WebCatalogAsp
         protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// txtDescription control.
+        /// txtLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.TextBox txtLastName;
 
         /// <summary>
         /// txtEmail control.
@@ -60,30 +60,39 @@ namespace WebCatalogAsp
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// updatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel updatePanel1;
 
         /// <summary>
-        /// txtUrlImage control.
+        /// txtImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrlImage;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImage;
 
         /// <summary>
-        /// imgProduct control.
+        /// imgUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgProduct;
+        protected global::System.Web.UI.WebControls.Image imgUser;
+
+        /// <summary>
+        /// btnSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

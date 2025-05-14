@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebCatalogAsp.Site" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title>Web Catalog</title>
@@ -49,7 +48,7 @@
                         else
                         {
                     %>
-                            <asp:Button runat="server" Text="Logout" ID="btnLogOut" CssClass="btn btn-outline-primary me-2" OnClick="btnLogOut_Click"/>
+                            <asp:Button runat="server" Text="Log out" ID="btnLogOut" CssClass="btn btn-outline-primary me-2" OnClick="btnLogOut_Click"/>
                     <%} %>
 
                     <asp:Image ID="imgAvatar" CssClass="ms-3" Style="height: 40px; width: 40px; border-radius: 50%;"

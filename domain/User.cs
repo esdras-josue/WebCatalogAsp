@@ -21,6 +21,7 @@ namespace domain
         public string ProfileImage { get; set; }
         public TypeUser TypeUser { get; set; }
         public bool IsAdmin { get; set; }
+        public DateTime DateBirth { get; set; }
 
         public User() { }
 

@@ -43,7 +43,7 @@
     <div class="row mt-4">
         <div class="col-md-4">
             <asp:Button Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click" ID="btnSave" runat="server" />
-            <a Class="btn btn-primary" href="Home.aspx">Cancel</a>
+            <a class="btn btn-primary" href="Home.aspx">Cancel</a>
         </div>
     </div>
 </asp:Content>

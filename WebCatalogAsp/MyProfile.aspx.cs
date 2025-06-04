@@ -45,11 +45,19 @@ namespace WebCatalogAsp
             try
             {
                 UserBusiness userBusiness = new UserBusiness();
-                string path = Server.MapPath("./images/");
                 User user = (User)Session["user"];
-                string fileName = "perfil-" + user.Id + ".jpg";
-                txtImage.PostedFile.SaveAs(path + fileName);
-                user.ProfileImage = fileName;
+
+                if(txtImage.PostedFile.FileName != "")
+                {
+                    string path = Server.MapPath("./images/");
+                    string fileName = "perfil-" + user.Id + ".jpg";
+                    txtImage.PostedFile.SaveAs(path + fileName);
+                    user.ProfileImage = fileName;
+                }
+
+                user.Name = txtName.Text;
+                user.Lastname = txtLastName.Text;
+               // user.DateBirth = DateTime.Parse(txtBirthDate.Text);
 
                 userBusiness.Update(user);
 

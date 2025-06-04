@@ -77,8 +77,10 @@ namespace business
             DataAcces data = new DataAcces();
             try
             {
-                data.SetQuery("Update USERS SET urlImagenPerfil = @imagen WHERE Id = @id");
-                data.AddParameter("@imagen", user.ProfileImage);
+                data.SetQuery("Update USERS SET urlImagenPerfil = @imagen, Nombre = @nombre, Apellido = @apellido, WHERE Id = @id");
+                data.AddParameter("@imagen", user.ProfileImage != null ? user.ProfileImage : (object)DBNull.Value);
+                data.AddParameter("@nombre", user.Name);
+                data.AddParameter("@apellido", user.Lastname);
                 data.AddParameter("@id", user.Id);
                 data.ExecuteNonQuery();
             }

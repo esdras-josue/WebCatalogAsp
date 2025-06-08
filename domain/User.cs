@@ -14,7 +14,18 @@ namespace domain
     public class User
     {
         public string Id { get; set; }
-        public string Email { get; set; }
+        private string email;
+        public string Email 
+        {
+            get { return email; }
+            set
+            {
+                if (value != "")
+                    email = value;
+                else
+                    throw new Exception("email can not be empty");
+            }
+        }
         public string Password { get; set; }
         public string Name { get; set; }
         public string Lastname { get; set; }

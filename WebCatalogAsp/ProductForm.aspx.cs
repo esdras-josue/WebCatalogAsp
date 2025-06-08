@@ -71,17 +71,17 @@ namespace WebCatalogAsp
                         catch (Exception ex)
                         {
                             // Aquí puedes loggear el error o mostrar un mensaje amigable
-                            Session.Add("error", ex);
+                            Session.Add("error", ex.ToString());
+                            Response.Redirect("Errors.aspx");
                         }
                     }
-
                 }
             }
             catch (Exception ex)
             {
 
-                Session.Add("error", ex.Message);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx");                
             }
 
         }
@@ -108,8 +108,8 @@ namespace WebCatalogAsp
             catch (Exception ex)
             {
 
-                Session.Add("error", ex.Message);
-                throw;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Errors.aspx");
             }
         }
 
@@ -160,7 +160,8 @@ namespace WebCatalogAsp
             catch (Exception ex)
             {
 
-                Session.Add("error", ex);
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Errors.aspx");
             }
         }
     }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Error.aspx" />
     <Content Include="Favorites.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="MyProfile.aspx" />
     <Content Include="ProductForm.aspx" />
     <Content Include="Products.aspx" />
@@ -92,6 +93,9 @@
     </Compile>
     <Compile Include="Favorites.aspx.designer.cs">
       <DependentUpon>Favorites.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MyProfile.aspx.cs">
       <DependentUpon>MyProfile.aspx</DependentUpon>

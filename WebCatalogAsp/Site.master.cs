@@ -15,7 +15,7 @@ namespace WebCatalogAsp
         {
 
             imgAvatar.ImageUrl = "https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
-            if (!(Page is Login || Page is Default))
+            if (!(Page is Login || Page is Default || Page is Error))
             {
                 if (!Security.ActiveSession((User)Session["user"]))
                     Response.Redirect("Login.aspx", false); // If there is no active session, redirect to login

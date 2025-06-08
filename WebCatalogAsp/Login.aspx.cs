@@ -37,7 +37,7 @@ namespace WebCatalogAsp
                 else
                 {
                     Session.Add("error", "email or pass incorrect");
-                    Response.Redirect("Error.aspx");
+                    Response.Redirect("Error.aspx", false);
                 }
             }
             catch (Exception ex)
